@@ -4,7 +4,7 @@
 The course is organized as a set of **lectures followed by hands-on sessions** using the **simulator** as well as the **real [iCub](http://www.icub.org)**.
 
 This crash course is a revised excerpt of the [_Veni Vidi Vici International Winter School on Humanoid Robot Programming_](http://icub.org/winterschool) and will cover the following topics:
-- **Software architectures for robot programming (i.e. YARP)**
+- **YARP middleware**
 - **Robot control**
 - **Robot vision**
 - **Robot scripting**
@@ -12,3 +12,5 @@ This crash course is a revised excerpt of the [_Veni Vidi Vici International Win
 ### Resources
 - 📚 [Wiki](https://github.com/icub-training/icub-training.github.io/wiki) (_program_,  _instructions_, _material_)
 - 👋 [Q&A](https://github.com/icub-training/icub-training.github.io/issues)
+- 🎓 [Gradebook](https://icub-training.github.io/gradebook)
+- [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/icub)
