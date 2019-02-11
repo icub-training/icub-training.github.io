@@ -12,3 +12,4 @@ This crash course is a revised excerpt of the [_Veni Vidi Vici International Win
 ### Resources
 - 📚 [Wiki](https://github.com/icub-training/icub-training.github.io/wiki) (_program_,  _instructions_, _material_)
 - 👋 [Q&A](https://github.com/icub-training/icub-training.github.io/issues)
+- 🎓 [Gradebook](https://icub-training.github.io/gradebook)
