@@ -13,4 +13,4 @@ This crash course is a revised excerpt of the [_Veni Vidi Vici International Win
 - 📚 [Wiki](https://github.com/icub-training/icub-training.github.io/wiki) (_program_,  _instructions_, _material_)
 - 👋 [Q&A](https://github.com/icub-training/icub-training.github.io/issues)
 - 🎓 [Gradebook](https://icub-training.github.io/gradebook)
-- [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/icub)
+- [![Community](https://img.shields.io/badge/Join-Robotology_Community-blue?style=plastic&logo=github)](https://github.com/robotology/community)
