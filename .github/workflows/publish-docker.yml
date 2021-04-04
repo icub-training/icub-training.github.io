@@ -1,0 +1,32 @@
+name: Publish Docker Image
+
+on:
+  workflow_dispatch:
+    inputs:
+      superbuild_release:
+        description: 'Robotology Superbuild Release'
+        required: true
+        default: 'v0000.00'
+      build_type:
+        description: 'Build Type'
+        required: true
+        default: 'Release'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      env:
+        ROBOTOLOGY_SUPERBUILD_RELEASE: ${{ github.event.inputs.superbuild_release }}
+        BUILD_TYPE:  ${{ github.event.inputs.build_type }}
+      with:
+        name: icub-training/sandbox
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        workdir: dockerfiles
+        buildargs: ROBOTOLOGY_SUPERBUILD_RELEASE, BUILD_TYPE
+        registry: ghcr.io
+        tags: "${{ github.event.inputs.superbuild_release }}"
