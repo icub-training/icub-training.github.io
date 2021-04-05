@@ -82,6 +82,11 @@ RUN git clone https://github.com/robotology/robotology-superbuild.git --depth 1 
 # Clean up git configuration
 RUN git config --global --unset-all user.name && \
     git config --global --unset-all user.email
+    
+# Install YARP bash completion
+RUN curl --header 'Accept: application/vnd.github.v3.raw' \
+         --location "https://api.github.com/repos/robotology/yarp/contents/data/bash-completion/yarp?ref=master" \
+         --output /etc/bash_completion.d/yarp
 
 # Set environmental variables
 ENV DISPLAY=:1
