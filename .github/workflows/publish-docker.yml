@@ -29,4 +29,4 @@ jobs:
         workdir: dockerfiles
         buildargs: ROBOTOLOGY_SUPERBUILD_RELEASE, BUILD_TYPE
         registry: ghcr.io
-        tags: "${{ github.event.inputs.superbuild_release }}"
+        tags: "latest, ${{ github.event.inputs.superbuild_release }}"
