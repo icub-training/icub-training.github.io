@@ -13,7 +13,7 @@ RUN apt update
 # Install essentials
 RUN apt install -y apt-utils software-properties-common apt-transport-https sudo \
     psmisc lsb-release tmux nano wget curl gedit build-essential gdb git gitk \
-    cmake cmake-curses-gui autoconf locales gdebi terminator meld dos2unix
+    cmake cmake-curses-gui autoconf locales gdebi terminator meld dos2unix bash-completion
 
 # Set the locale
 RUN locale-gen en_US.UTF-8
@@ -82,11 +82,6 @@ RUN git clone https://github.com/robotology/robotology-superbuild.git --depth 1 
 # Clean up git configuration
 RUN git config --global --unset-all user.name && \
     git config --global --unset-all user.email
-    
-# Install YARP bash completion
-RUN curl --header 'Accept: application/vnd.github.v3.raw' \
-         --location "https://api.github.com/repos/robotology/yarp/contents/data/bash-completion/yarp?ref=master" \
-         --output /etc/bash_completion.d/yarp
 
 # Set environmental variables
 ENV DISPLAY=:1
