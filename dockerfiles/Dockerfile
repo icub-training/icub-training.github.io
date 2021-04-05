@@ -85,12 +85,14 @@ RUN git config --global --unset-all user.name && \
 
 # Set environmental variables
 ENV DISPLAY=:1
+ENV DONT_PROMPT_WSL_INSTALL=1
 
 # Install informative git for bash
 RUN git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 
 # Set up .bashrc
-RUN echo "GIT_PROMPT_ONLY_IN_REPO=1" >> /root/.bashrc && \
+RUN echo "alias code='code --user-data-dir=\"/root/.vscode\"'" >> /root/.bashrc && \
+    echo "GIT_PROMPT_ONLY_IN_REPO=1" >> /root/.bashrc && \
     echo "source \${HOME}/.bash-git-prompt/gitprompt.sh" >> /root/.bashrc && \
     echo "source /usr/local/share/robotology-superbuild/setup.sh" >> /root/.bashrc
 
