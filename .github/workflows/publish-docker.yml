@@ -7,6 +7,10 @@ on:
         description: 'Robotology Superbuild Release'
         required: true
         default: 'v0000.00'
+      add_tag_latest:
+        description: 'Add tag latest to the docker image'
+        required: true
+        default: 'yes'
       build_type:
         description: 'Build Type'
         required: true
@@ -17,6 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: Require tag latest
+      id: add_tag_latest
+      if: ${{ github.event.inputs.add_tag_latest == 'yes' }}
+      run: |
+        echo "::set-output name=tag::, latest"
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       env:
@@ -29,4 +38,4 @@ jobs:
         workdir: dockerfiles
         buildargs: ROBOTOLOGY_SUPERBUILD_RELEASE, BUILD_TYPE
         registry: ghcr.io
-        tags: "latest, ${{ github.event.inputs.superbuild_release }}"
+        tags: "${{ github.event.inputs.superbuild_release }}${{ steps.add_tag_latest.outputs.tag }}"
