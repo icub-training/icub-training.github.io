@@ -92,6 +92,7 @@ RUN git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prom
 
 # Set up .bashrc
 RUN echo "alias code='code --user-data-dir=\"/root/.vscode\"'" >> /root/.bashrc && \
+    echo "source /etc/profile.d/bash_completion.sh" >> /root/.bashrc && \
     echo "GIT_PROMPT_ONLY_IN_REPO=1" >> /root/.bashrc && \
     echo "source \${HOME}/.bash-git-prompt/gitprompt.sh" >> /root/.bashrc && \
     echo "source /usr/local/share/robotology-superbuild/setup.sh" >> /root/.bashrc
