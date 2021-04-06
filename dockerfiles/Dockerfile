@@ -88,7 +88,7 @@ ENV DISPLAY=:1
 ENV DONT_PROMPT_WSL_INSTALL=1
 
 # Install informative git for bash
-RUN git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
+RUN git clone https://github.com/magicmonty/bash-git-prompt.git /root/.bash-git-prompt --depth=1
 
 # Set up .bashrc
 RUN echo "alias code='code --user-data-dir=\"/root/.vscode\"'" >> /root/.bashrc && \
