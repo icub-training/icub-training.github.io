@@ -61,6 +61,7 @@ RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb
 # Select options
 ARG ROBOTOLOGY_SUPERBUILD_RELEASE
 ARG BUILD_TYPE
+ARG ROBOTOLOGY_SUPERBUILD_INSTALL_DIR=/usr/local
 
 # Set up git (required by superbuild)
 RUN git config --global user.name "GitHub Actions" && \
@@ -72,7 +73,7 @@ RUN git clone https://github.com/robotology/robotology-superbuild.git --depth 1 
     mkdir build && cd build && \
     cmake .. \
           -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
-          -DYCM_EP_INSTALL_DIR=/usr/local \
+          -DYCM_EP_INSTALL_DIR=${ROBOTOLOGY_SUPERBUILD_INSTALL_DIR} \
           -DROBOTOLOGY_ENABLE_CORE:BOOL=ON \
           -DROBOTOLOGY_ENABLE_ROBOT_TESTING:BOOL=ON \
           -DROBOTOLOGY_USES_GAZEBO:BOOL=ON && \
@@ -95,7 +96,7 @@ RUN echo "alias code='code --user-data-dir=\"/root/.vscode\"'" >> /root/.bashrc 
     echo "source /etc/profile.d/bash_completion.sh" >> /root/.bashrc && \
     echo "GIT_PROMPT_ONLY_IN_REPO=1" >> /root/.bashrc && \
     echo "source \${HOME}/.bash-git-prompt/gitprompt.sh" >> /root/.bashrc && \
-    echo "source /usr/local/share/robotology-superbuild/setup.sh" >> /root/.bashrc
+    echo "source ${ROBOTOLOGY_SUPERBUILD_INSTALL_DIR}/share/robotology-superbuild/setup.sh" >> /root/.bashrc
 
 # Set up script to launch graphics and vnc
 COPY start-vnc-session.sh /usr/bin/start-vnc-session.sh
