@@ -59,10 +59,6 @@ RUN git config --global user.name "GitHub Actions" && \
 RUN git clone https://github.com/robotology/robotology-superbuild.git --depth 1 --branch ${ROBOTOLOGY_SUPERBUILD_RELEASE} && \
     sudo robotology-superbuild/scripts/install_apt_dependencies.sh
 
-# Clean up git configuration
-RUN git config --global --unset-all user.name && \
-    git config --global --unset-all user.email
-
 # Install dependencies
 RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list' && \
     wget https://packages.osrfoundation.org/gazebo.key -O - | apt-key add - && \
@@ -80,6 +76,10 @@ RUN cd robotology-superbuild && \
           -DROBOTOLOGY_USES_GAZEBO:BOOL=ON && \
     make && \
     cd ../.. && rm -Rf robotology-superbuild
+
+# Clean up git configuration
+RUN git config --global --unset-all user.name && \
+    git config --global --unset-all user.email
     
 # Set environmental variables
 ENV DISPLAY=:1
