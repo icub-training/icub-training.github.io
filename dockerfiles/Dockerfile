@@ -93,6 +93,7 @@ RUN echo "alias code='code --user-data-dir=\"/root/.vscode\"'" >> /root/.bashrc 
     echo "source /etc/profile.d/bash_completion.sh" >> /root/.bashrc && \
     echo "GIT_PROMPT_ONLY_IN_REPO=1" >> /root/.bashrc && \
     echo "source \${HOME}/.bash-git-prompt/gitprompt.sh" >> /root/.bashrc && \
+    echo "YARP_COLORED_OUTPUT=1" >> /root/.bashrc && \
     echo "source ${ROBOTOLOGY_SUPERBUILD_INSTALL_DIR}/share/robotology-superbuild/setup.sh" >> /root/.bashrc
 
 # Set up script to launch graphics and vnc
