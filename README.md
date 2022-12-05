@@ -6,7 +6,6 @@ The course is organized as a set of **lectures followed by hands-on sessions** u
 This crash course is a revised excerpt of the [_Veni Vidi Vici International Winter School on Humanoid Robot Programming_](http://www.icub.org/school/latest) and will cover the following topics:
 - **YARP middleware**
 - **Robot control**
-- **Robot vision**
 
 ### Resources
 - 📚 [Wiki](https://github.com/icub-training/icub-training.github.io/wiki) (_program_,  _instructions_, _material_)
