@@ -1,0 +1,71 @@
+version: "3.7"
+
+x-trainingShanghai: &trainingShanghai
+  image: icubteamcode/superbuild:v2022.05.2_sources
+  environment:
+    - YARP_FORWARD_LOG_ENABLE=1
+    - DISPLAY=${DISPLAY}
+    - QT_X11_NO_MITSHM=1
+    - XAUTHORITY=/root/.Xauthority
+  volumes:
+    - "${HOME}/.config/yarp:/root/.config/yarp"
+    - "${HOME}/my_projects/training/iCubShanghai/shared_files:/root/shared_files"
+    - "/tmp/.X11-unix:/tmp/.X11-unix"
+    - "${XAUTHORITY}:/root/.Xauthority"
+  working_dir: /root/shared_files
+  #ports:
+  #  - "10000:10000"
+  network_mode: "host"
+  #privileged: true
+
+
+
+x-develop: &develop
+  image: icubteamcode/superbuild:v2022.05.2_sources
+  environment:
+    - YARP_FORWARD_LOG_ENABLE=1
+  volumes:
+    - "${HOME}/.config/yarp:/root/.config/yarp"
+    - "${HOME}/my_projects/training/iCubShanghai/shared_files:/root/shared_files"
+  working_dir: /root/shared_files
+  #ports:
+  #  - "10000:10000"
+  network_mode: "host"
+  privileged: true
+  tty: true
+  stdin_open: true
+
+
+
+
+
+services:
+  yserver:
+    <<: *trainingShanghai
+    command: yarpserver --read
+  
+  yplayer:
+    <<: *trainingShanghai
+    restart: on-failure
+    depends_on:
+     - yserver
+    command: yarpdataplayer
+  
+  yview:
+    <<: *trainingShanghai
+    restart: on-failure
+    depends_on:
+     - yserver
+    command: yarpview
+
+  yconnect:
+    <<: *trainingShanghai
+    restart: on-failure
+    depends_on:
+     - yview
+     - yplayer
+    command: sh -c "yarp wait /icub/camcalib/left/out; yarp connect /icub/camcalib/left/out /yarpview/img:i"
+  
+  myapp:
+    <<: *develop
+
