@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:22.04
 LABEL org.opencontainers.image.title="iCub Training Sandbox"
 LABEL org.opencontainers.image.description="Infrastructure for iCub Training"
 LABEL org.opencontainers.image.source="https://github.com/icub-training/icub-training.github.io"
